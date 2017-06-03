@@ -21,6 +21,7 @@ mv  hbase-1.2.5  hbase
  
  打开/etc/profile文件，最后添加以下内容保存，并使之立刻生效
  export HBASE_HOME=/usr/local/MyHadoop/hbase 
+ 
  export PATH=$PATH:$HBASE_HOME/bin
 
  shell 命令:
@@ -39,6 +40,32 @@ mv  hbase-1.2.5  hbase
  
  ## 4.修改配置文件
  
+ 修改配置比较费神，因为这个分　单机　伪分布　和集群所以相对较难
  
-
+ ＃＃＃　单机配置
+ 
+ 需要先编辑 conf/hbase-site.xml 去配置hbase.rootdir，来选择HBase将数据写到哪个目录 .
+｀ 
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>file:///DIRECTORY/hbase</value>
+  </property>
+</configuration>
+｀
+ file:///DIRECTORY/hbase　这里替换成你期望写文件的目录. 默认 hbase.rootdir 是指向 /tmp/hbase-${user.name} ，也就说你会在重启后丢失数据(重启的时候操作系统会清理/tmp目录)，你可以自己选择一个本地目录即可，也可以放到hdfs上，这在后面伪分布和集群搭建上会提及。
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
