@@ -42,9 +42,15 @@ mv  hbase-1.2.5  hbase
  
  修改配置比较费神，因为这个分　单机　伪分布　和集群所以相对较难
  
+ 
  ＃＃＃　单机配置
  
- 需要先编辑 conf/hbase-site.xml 去配置hbase.rootdir，来选择HBase将数据写到哪个目录 .
+ 1.不管是什么模式，你都需要编辑 conf/hbase-env.sh来告知HBase java的安装路径.在这个文件里你还可以设置HBase的运行环境，诸如 heapsize和其他 JVM有关的选项, 还有Log文件地址，等等. 设置 JAVA_HOME指向 java安装的路径.
+ 
+ 在单机模式中，HBase使用本地文件系统，而不是HDFS ，所有的服务和zooKeeper都运作在一个JVM中。zookeep监听一个端口，这样客户端就可以连接HBase了。
+ 
+ 2.需要先编辑 conf/hbase-site.xml 去配置hbase.rootdir，来选择HBase将数据写到哪个目录 .
+ 
 ｀ 
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
